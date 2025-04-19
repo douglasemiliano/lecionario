@@ -8,6 +8,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { DatePipe, registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideNativeDateAdapter } from '@angular/material/core';
 
 // Registra os dados de localização para pt-BR
 registerLocaleData(localePt);
@@ -18,6 +19,7 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()), 
     provideAnimations(),
     provideAnimationsAsync(),
+    provideNativeDateAdapter(),
     { provide: LOCALE_ID, useValue: 'pt-BR' }, // Locale configurado para Brasil
     { provide: 'DEFAULT_TIMEZONE', useValue: 'America/Recife' }, // Fuso horário padrão
     DatePipe]

@@ -1,0 +1,121 @@
+import { Component, inject } from '@angular/core';
+import { Conteudo, Lecionario } from '../../model/Lecionario.model';
+import { LecionarioService } from '../../services/lecionario.service';
+import { CommonModule, DatePipe } from '@angular/common';
+import { LecionarioMock } from '../../mocks/lecionario.mock';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatCardModule } from '@angular/material/card';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatRippleModule } from '@angular/material/core';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+
+@Component({
+  selector: 'app-lecionario',
+  imports: [ FormsModule, CommonModule, DatePipe,MatButtonModule, MatIconModule, MatRippleModule, MatCardModule, ReactiveFormsModule, MatDatepickerModule, MatFormFieldModule, MatInputModule, OverlayModule],
+  templateUrl: './lecionario.component.html',
+  styleUrl: './lecionario.component.scss'
+})
+export class LecionarioComponent {
+  selected: any;
+  private lecionarioService: LecionarioService = inject(LecionarioService)
+
+  dataUnica: Date = this.lecionarioService.dataUnica();
+  dataInicio: Date | null = null;
+  dataFim: Date | null = null;
+  conteudoLecionario: Conteudo | null = null;
+
+  isOpen = false;
+
+  isDragging = false;
+
+  dataSelecionada: any = ""
+
+  lecionarioCompleto: Lecionario[] = LecionarioMock;
+
+    descricaoLecionario: string = "Esta ferramenta é organizada para nos conduzir a uma vida de disciplina espiritual e desfrutar do livre acesso proporcionado pela obra de Cristo. Não se trata apenas de interpretar textos, mas de aprender a ouvir Deus falar diretamente com você através da oração e leitura bíblica."
+  liturgiaDiariaTitulo: string = "Liturgia Diária"
+  
+  liturgiaDiaria: string[] = ["Inicie com uma oração, pedindo ao Senhor que fale através de Sua Palavra e prepare seu coração para desfrutar de Sua presença.",
+    "Faça uma ou todas as leituras indicadas (podendo usar as leituras em mais de um momento durante o dia, desde que se faça todas as leituras).", 
+    "Ouça ou cante um louvor.", 
+    "Conclua com a oração diária, utilizando-a como guia para refletir sobre o que buscar nesse momento."
+  ] 
+
+  constructor(){}
+
+  ngOnInit(){
+    this.getConteudoLecionario();
+  }
+  
+  getConteudoLecionario(){
+    this.conteudoLecionario = this.lecionarioService.getConteudoPorData(this.lecionarioService.dataUnica())!
+  }
+
+  mudouData() {
+    this.lecionarioService.getConteudoPorData(this.dataUnica);
+    console.log(this.dataUnica.setDate(this.dataUnica.getDate() + 1));
+    
+  }
+
+   primeiraLetraMaiuscula(nome: string) {
+    return nome.charAt(0).toUpperCase() + nome.substring(1);
+  }
+
+  incrementarDecrementarDia(increment: boolean): void {
+    const dataAtual = this.dataUnica; // lê o valor atual
+    const novaData = new Date(dataAtual); // cria uma nova cópia da data
+    if (increment){
+      novaData.setDate(novaData.getDate() + 1); // incrementa 1 dia
+    } else {
+      novaData.setDate(novaData.getDate() - 1); // decrementa 1 dia
+    }
+    this.dataUnica = novaData; // atualiza o signal
+
+    this.lecionarioService.dataUnica.set(this.dataUnica); // atualiza o valor do signal no serviço
+    
+  }
+
+  onSelect(event:any){   
+    this.dataUnica = event;
+    this.lecionarioService.getConteudoPorData(this.dataUnica);
+    this.isOpen = false;
+  }
+  
+  formatarTexto(){
+
+    console.log(this.conteudoLecionario?.oracoes.map((texto: any) => texto));
+
+    console.log(this.conteudoLecionario);
+    
+    
+    let texto: string = `${this.negritoWhatsapp(this.conteudoLecionario?.tempo + " - Dia: " + this.dataUnica.toLocaleDateString())}
+    \n${this.negritoWhatsapp(this.conteudoLecionario?.nome!)}
+    \n${this.descricaoLecionario}
+    \n${this.negritoWhatsapp(this.liturgiaDiariaTitulo)}
+    \n${this.liturgiaDiaria.map((item, index) => `${index+1}. ${item}`).join("\n")}
+    \n${this.negritoWhatsapp("Textos Bíblicos")}
+    \n${this.conteudoLecionario!.leituras.map((leitura: any) => `${leitura.tipo}: ${leitura.texto}`).join("\n")}
+    \n${this.negritoWhatsapp("Orações para o dia:")}
+    \n${this.conteudoLecionario!.oracoes.map((oracao: any) => `${oracao}`).join("\n")}
+    `;
+
+    
+    
+    navigator.clipboard.writeText(texto).then(() => {
+      alert('Lecionário copiado para a área de transferência!');
+    }).catch(err => {
+      console.error('Erro ao copiar o texto: ', err);
+    });
+    
+  }
+
+  negritoWhatsapp(text: string): string{
+    return `*${text}*`;
+  }
+
+
+}

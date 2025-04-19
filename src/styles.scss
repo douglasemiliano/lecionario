@@ -1,4 +1,85 @@
-/* You can add global styles to this file, and also import other style files */
+/* styles.scss */
 
-/* Importing Bootstrap SCSS file. */
-@use 'bootstrap/scss/bootstrap';
+/* styles.scss */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+/* styles.scss */
+
+
+
+/* Tema Claro */
+body {
+    background-color: #ffffff;
+    color: #212529;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Segoe UI', sans-serif;
+
+    & h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: purple;
+    }
+
+    & .navbar {
+        background-color: rgb(237, 237, 237);
+    }
+
+    & .fixed-bottom {
+        & .btn {
+            color: #810081;
+        }
+    }
+
+    & .calendario {
+        background-color: #810081;
+    }
+
+    & .fab {
+        background-color: #810081;
+        color: white;
+    }
+
+}
+
+
+/* Tema Escuro */
+body.dark-mode {
+    background-color: #212529;
+    color: #f5f5f5;
+
+    & h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: #ffffff;
+    }
+
+    & .navbar {
+        background-color: #5f00c0;
+        color: white;
+    }
+
+    & .fixed-bottom {
+        & .btn {
+            color: white;
+        }
+    }
+
+    & .calendario {
+        background-color: #212529;
+    }
+
+    & .fab {
+        background-color: #5f00c0;
+        color: white;
+    }
+}
+
+body.dark-mode .btn-toggle-theme {
+    color: white;
+    background-color: transparent;
+}

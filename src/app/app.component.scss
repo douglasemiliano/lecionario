@@ -1,14 +1,43 @@
 .home {
-    color: purple;
-    font-size: 16pt;
-    font-weight: bolder;
-    text-align: center;
-    padding-top: 5rem;
+    padding-bottom: 5rem;
     // display: flex;
     // flex-direction: column;
     // align-items: center;
     // justify-content: center;
-    // height: 100vh; /* Altura total da tela */
     // background-color: #f0f0f0; /* Cor de fundo */
-  }
-  
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    & span {
+        width: 75%;
+        display: flex;
+        justify-content: flex-end;
+        font-weight: 700;
+    }
+
+    & .darkmode {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+        flex-wrap: nowrap;
+    }
+}
+
+
+.btn-toggle-theme {
+    color: purple;
+    border: none;
+    padding: 2px;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 50px;
+}

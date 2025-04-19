@@ -1,0 +1,51 @@
+.fab {
+    position: fixed;
+    bottom: 5rem;  /* Distância do fundo da tela */
+    right: 1rem;   /* Distância da lateral direita da tela */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;  /* Deixa o botão redondo */
+    font-size: 30px;  /* Tamanho do texto ou ícone */
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    z-index: 9999;
+  }
+
+  .disabled-date {
+    pointer-events: none;  /* Impede clique nas datas */
+    color: #ccc;  /* Cor para mostrar que a data está desabilitada */
+  }
+  
+:host {
+  display: block;
+  font-family: 'Arial', sans-serif;
+}
+
+
+.empty-state {
+    padding: 2rem;
+    margin-top: 10rem;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    text-align: center;
+
+    & img {
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    & h6 {
+        font-size: 16pt;
+        font-weight: bolder;
+    }
+}

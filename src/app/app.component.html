@@ -1,11 +1,19 @@
 <div class="home">
-  Lecionário
-
-
-  <div class="container">
-    <input type="date" class="form-control"  [(ngModel)]="dataUnica" (ngModelChange)="mudouData()" >
-
-    <button class="btn mt-4" style="background-color: purple; color: white;">Pesquisar</button>
+  <nav class="navbar fixed-top d-flex flex-row">
+    
+    <span>
+      <h6>
+        Lecionário Comum Revisado        
+      </h6>
+    </span>
+  
+  <div class="darkmode">
+    <button (click)="toggleDarkMode()" class="btn-toggle-theme" mat-icon-button [attr.aria-label]="isDarkMode ? 'Tema Claro' : 'Tema Escuro'">
+      <mat-icon>{{ isDarkMode ? 'light_mode' : 'dark_mode' }}</mat-icon>
+    </button>
+  
   </div>
-
+  </nav>
+  
+  <router-outlet></router-outlet>
 </div>

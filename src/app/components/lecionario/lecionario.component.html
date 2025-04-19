@@ -1,0 +1,116 @@
+<nav class="navbar fixed-bottom d-flex flex-row">
+    <button class="btn btn" style="width: 15%;" (click)="incrementarDecrementarDia(false)" (click)="getConteudoLecionario()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back_ios_new"></mat-icon>
+   
+    </button>
+    <button class="btn d-flex flex-column justify-content-center align-items-center" (click)="isOpen = !isOpen" type="button" cdkOverlayOrigin #trigger="cdkOverlayOrigin"
+        style="width: 15rem;">
+        <strong style="font-size: 14pt;">
+            {{dataUnica | date}}
+        </strong>
+
+        <span style="margin-top: -0.5rem; text-wrap: nowrap;">
+            {{conteudoLecionario ? conteudoLecionario.nome : "Lecionario"}}
+        </span>
+
+    </button>
+    <button type="date" class="btn btn" style="width: 15%;" (click)="incrementarDecrementarDia(true)" (click)="getConteudoLecionario()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward_ios_new" ></mat-icon>
+    </button>
+</nav>
+
+<ng-template style="width: 70%;" cdkConnectedOverlay [cdkConnectedOverlayOrigin]="trigger"
+    [cdkConnectedOverlayOpen]="isOpen">
+        <mat-card class="calendario" style="width: 15rem;">          
+            <mat-calendar  [selected]="dataUnica" (selectedChange)="onSelect($event)"></mat-calendar>
+        </mat-card>
+</ng-template>
+
+
+
+  
+
+@if(conteudoLecionario){
+    <div class="pt-4 px-2 mt-5">
+        <!-- <mat-form-field appearance="fill" class="mr-4" style="width: 100%;">
+          <mat-label>Data específica</mat-label>
+          <input matInput [matDatepicker]="picker1" [(ngModel)]="dataUnica" (ngModelChange)="mudouData()">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field> -->
+        <span class="mb-4 text-center mt-5" style="color: purple; font-size: 16pt;">
+            <h4>Ano C - {{conteudoLecionario.tempo}}</h4>
+        </span>
+      
+        <!-- <button mat-raised-button color="primary"  (click)="filtrarPorData()">Buscar</button> -->
+      
+        <hr class="my-6" />
+      
+    
+    
+        
+        <div class="container d-flex justify-content-between flex-column">
+            <!-- <span style="text-align: justify;">
+                {{descricaoLecionario}}
+            </span> 
+            <br> -->
+    
+            <strong>
+                {{liturgiaDiariaTitulo}}
+            </strong>
+            <br>
+    
+            <ol>
+                @for (lit of this.liturgiaDiaria; track lit){
+                <li>
+                    {{lit}}
+                </li>
+                }
+            </ol>
+    
+            <br>
+    
+    
+            @if (this.conteudoLecionario.leituras){
+            <strong>
+                Textos Bíblicos:
+            </strong>
+            <br>
+            @for (texto of this.conteudoLecionario.leituras; let index = $index; track index) {
+            <div class="container">
+                -{{ primeiraLetraMaiuscula(texto.tipo) }}: {{texto.texto}}
+            </div>
+            }
+            <br>
+            }
+    
+            <strong>
+                Orações para o dia:
+            </strong>
+            <br>
+            <ol>
+                @for (oracao of this.conteudoLecionario.oracoes; let index = $index; track index) {
+                <li>
+                    {{oracao}}
+                </li>
+                }
+            </ol>
+    
+        </div>
+        
+    </div>
+} @else {
+    <div class="empty-state">
+        <img src="assets/empty.png" alt="empty-state" />
+        <h6>
+                Nenhum conteúdo encontrado para a data selecionada!
+        </h6>
+    </div>
+}
+
+
+
+
+    <button matRipple class="fab" title="Copiar" (click)="formatarTexto()">
+        <mat-icon>content_copy</mat-icon>
+    </button>
