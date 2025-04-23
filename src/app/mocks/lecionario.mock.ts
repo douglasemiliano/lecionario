@@ -160,7 +160,189 @@ export const LecionarioMock = [{
                     "texto": "Mateus 27.57-66 ou João 19.38-42"
                 }
             ]
-        }
+        },
+        {
+            "tempo": "Páscoa",
+            "dia": "2025-04-23",
+            "nome": "Quarta-feira próx ao 2º domingo de Páscoa",
+            "oracoes": [
+              "Damos-te graças, ó Pai Celestial, porque nos libertaste do domínio do pecado e da morte, e nos trouxeste para o reino de teu Filho; rogamos-te que, assim como por meio de sua morte, Ele nos chamou de novo para a vida, assim por seu amor ressuscitemos para as alegrias eternas; pelo mesmo Jesus Cristo, nosso Senhor, o qual vive e reina contigo e com o Espírito Santo, um só Deus, agora e sempre. Amém."
+            ],
+            "leituras": [
+              {
+                "tipo": "primeira",
+                "texto": "II Samuel 6:1-15"
+              },
+              {
+                "tipo": "salmo",
+                "texto": "Salmo 118:1-2, 14-24"
+              },
+              {
+                "tipo": "evangelho",
+                "texto": "Lucas 24:1-12"
+              }
+            ]
+          },
+
+          {
+            "tempo": "Páscoa",
+            "dia": "2025-04-24",
+            "nome": "Quinta-feira próx ao 2º domingo de Páscoa",
+            "oracoes": [
+              "Pai Todo-poderoso, deste teu Filho para morrer pelos nossos pecados e ressuscitar para nossa justificação; permite que a malícia nos não afete nem a perversão nos corrompa, para te servirmos sempre em verdade e santidade. Mediante Jesus Cristo, nosso Senhor. Amém."
+            ],
+            "leituras": [
+              {
+                "tipo": "salmo",
+                "texto": "Salmo 150"
+              },
+              {
+                "tipo": "primeira",
+                "texto": "I Samuel 17:1-23"
+              },
+              {
+                "tipo": "evangelho",
+                "texto": "Atos 5:12-16"
+              }
+            ]
+          },
+          {
+            "tempo": "Páscoa",
+            "dia": "2025-04-25",
+            "nome": "Sexta-feira próx ao 2º Domingo de Páscoa",
+            "oracoes": [
+              "Pai Todo-poderoso, deste teu Filho para morrer pelos nossos pecados e ressuscitar para nossa justificação; permite que a malícia nos não afete nem a perversão nos corrompa, para te servirmos sempre em verdade e santidade. Mediante Jesus Cristo, nosso Senhor. Amém."
+            ],
+            "leituras": [
+              {
+                "tipo": "salmo",
+                "texto": "Salmo 150"
+              },
+              {
+                "tipo": "primeira",
+                "texto": "I Samuel 17:19-32"
+              },
+              {
+                "tipo": "segunda",
+                "texto": "Atos 5:17-26"
+              }
+            ]
+          },
+          {
+            "tempo": "Páscoa",
+            "dia": "2025-04-26",
+            "nome": "Sábado próx ao 2º Domingo de Páscoa",
+            "oracoes": [
+              "Pai Todo-poderoso, deste teu Filho para morrer pelos nossos pecados e ressuscitar para nossa justificação; permite que a malícia nos não afete nem a perversão nos corrompa, para te servirmos sempre em verdade e santidade. Mediante Jesus Cristo, nosso Senhor. Amém."
+            ],
+            "leituras": [
+              {
+                "tipo": "salmo",
+                "texto": "Salmo 150"
+              },
+              {
+                "tipo": "primeira",
+                "texto": "I Samuel 17:32-51"
+              },
+              {
+                "tipo": "evangelho",
+                "texto": "Lucas 24:36-40"
+              }
+            ]
+          },
+          {
+            "tempo": "Páscoa",
+            "dia": "2025-04-27",
+            "nome": "Segundo Domingo de Páscoa",
+            "oracoes": [
+              "Onipotente e Eterno Deus, de tal modo amaste o mundo, que enviaste teu Filho, nosso Salvador Jesus Cristo, para tomar sobre si a nossa carne e sofrer morte na cruz, dando ao gênero humano exemplo de sua profunda humildade; concede, em tua misericórdia, que imitemos a sua paciência no sofrimento e possamos participar também de sua ressurreição; mediante o mesmo Jesus Cristo, nosso Senhor, que vive e reina contigo e com o Espírito Santo, um só Deus, agora e sempre. Amém."
+            ],
+            "leituras": [
+              {
+                "tipo": "Primeira",
+                "texto": "Atos 5:27-32"
+              },
+              {
+                "tipo": "interlecional",
+                "texto": "Salmo 118:14-29 ou Salmo 150"
+              },
+              {
+                "tipo": "segunda",
+                "texto": "Apocalipse 1:4-8"
+              },
+              {
+                "tipo": "evangelho",
+                "texto": "João 20:19-31"
+              }
+            ]
+          },
+          {
+            "tempo": "Páscoa",
+            "dia": "2025-04-28",
+            "nome": "Segunda-feira após o 2º Domingo de Páscoa",
+            "oracoes": [
+              "Pai Todo-poderoso, deste teu Filho para morrer pelos nossos pecados e ressuscitar para nossa justificação; permite que a malícia nos não afete nem a perversão nos corrompa, para te servirmos sempre em verdade e santidade. Mediante Jesus Cristo, nosso Senhor. Amém."
+            ],
+            "leituras": [
+              {
+                "tipo": "salmo",
+                "texto": "Salmo 122"
+              },
+              {
+                "tipo": "primeira",
+                "texto": "Ester 7:1-10"
+              },
+              {
+                "tipo": "segunda",
+                "texto": "Apocalipse 1:9-20"
+              }
+            ]
+          },
+          {
+            "tempo": "Páscoa",
+            "dia": "2025-04-29",
+            "nome": "Terça-feira após o 2º Domingo de Páscoa",
+            "oracoes": [
+              "Pai Todo-poderoso, deste teu Filho para morrer pelos nossos pecados e ressuscitar para nossa justificação; permite que a malícia nos não afete nem a perversão nos corrompa, para te servirmos sempre em verdade e santidade. Mediante Jesus Cristo, nosso Senhor. Amém."
+            ],
+            "leituras": [
+              {
+                "tipo": "salmo",
+                "texto": "Salmo 122"
+              },
+              {
+                "tipo": "primeira",
+                "texto": "Ester 8:1-17"
+              },
+              {
+                "tipo": "segunda",
+                "texto": "Apocalipse 2:8-11"
+              }
+            ]
+          },
+          {
+            "tempo": "Páscoa",
+            "dia": "2025-04-30",
+            "nome": "Quarta-feira após o 2º Domingo de Páscoa",
+            "oracoes": [
+              "Pai Todo-poderoso, deste teu Filho para morrer pelos nossos pecados e ressuscitar para nossa justificação; permite que a malícia nos não afete nem a perversão nos corrompa, para te servirmos sempre em verdade e santidade. Mediante Jesus Cristo, nosso Senhor. Amém."
+            ],
+            "leituras": [
+              {
+                "tipo": "salmo",
+                "texto": "Salmo 122"
+              },
+              {
+                "tipo": "primeira",
+                "texto": "Ester 9:1-5, 18-23"
+              },
+              {
+                "tipo": "evangelho",
+                "texto": "Lucas 12:4-12"
+              }
+            ]
+          }
+          
     ]
 }
 ]

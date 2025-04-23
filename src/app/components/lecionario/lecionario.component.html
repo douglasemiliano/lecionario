@@ -1,4 +1,4 @@
-<nav class="navbar fixed-bottom d-flex flex-row">
+<nav class="navbar bottombar fixed-bottom d-flex flex-row">
     <button class="btn btn" style="width: 15%;" (click)="incrementarDecrementarDia(false)" (click)="getConteudoLecionario()">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back_ios_new"></mat-icon>
    
@@ -78,7 +78,7 @@
             <br>
             @for (texto of this.conteudoLecionario.leituras; let index = $index; track index) {
             <div class="container">
-                -{{ primeiraLetraMaiuscula(texto.tipo) }}: {{texto.texto}}
+                <strong>-{{ primeiraLetraMaiuscula(texto.tipo) }}:</strong> {{texto.texto}}
             </div>
             }
             <br>
@@ -88,13 +88,13 @@
                 Orações para o dia:
             </strong>
             <br>
-            <ol>
+            <ul>
                 @for (oracao of this.conteudoLecionario.oracoes; let index = $index; track index) {
                 <li>
                     {{oracao}}
                 </li>
                 }
-            </ol>
+            </ul>
     
         </div>
         
@@ -109,8 +109,10 @@
 }
 
 
+<button mat-fab class="fab" (click)="formatarTexto()">
+    <mat-icon>content_copy</mat-icon>
+  </button>
 
-
-    <button matRipple class="fab" title="Copiar" (click)="formatarTexto()">
+    <!-- <button matRipple class="fab" title="Copiar" (click)="formatarTexto()">
         <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward_ios_new" ></mat-icon>
-    </button>
+    </button> -->

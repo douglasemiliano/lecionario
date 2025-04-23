@@ -27,6 +27,7 @@ body {
     }
 
     & .fixed-bottom {
+        z-index: 1;
         & .btn {
             color: #810081;
         }
@@ -64,6 +65,7 @@ body.dark-mode {
     }
 
     & .fixed-bottom {
+        z-index: 1;
         & .btn {
             color: white;
         }

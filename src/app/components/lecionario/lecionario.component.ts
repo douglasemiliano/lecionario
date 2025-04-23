@@ -86,11 +86,6 @@ export class LecionarioComponent {
   }
   
   formatarTexto(){
-
-    console.log(this.conteudoLecionario?.oracoes.map((texto: any) => texto));
-
-    console.log(this.conteudoLecionario);
-    
     
     let texto: string = `${this.negritoWhatsapp(this.conteudoLecionario?.tempo + " - Dia: " + this.dataUnica.toLocaleDateString())}
     \n${this.negritoWhatsapp(this.conteudoLecionario?.nome!)}
