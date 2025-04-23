@@ -255,8 +255,8 @@ export const LecionarioMock = [{
             "dia": "2025-04-27",
             "nome": "Segundo Domingo de Páscoa",
             "oracoes": [
-              "Onipotente e Eterno Deus, de tal modo amaste o mundo, que enviaste teu Filho, nosso Salvador Jesus Cristo, para tomar sobre si a nossa carne e sofrer morte na cruz, dando ao gênero humano exemplo de sua profunda humildade; concede, em tua misericórdia, que imitemos a sua paciência no sofrimento e possamos participar também de sua ressurreição; mediante o mesmo Jesus Cristo, nosso Senhor, que vive e reina contigo e com o Espírito Santo, um só Deus, agora e sempre. Amém."
-            ],
+                "Pai celestial, libertaste-nos do poder do pecado e trouxeste-nos para o reino de teu Filho; concede que Aquele cuja morte nos restaurou à vida, pela sua presença entre nós, nos erga até às alegrias eternas. Mediante Jesus Cristo, nosso Senhor. Amém.",
+                "Pai Todo-poderoso, deste teu Filho para morrer pelos nossos pecados e ressuscitar para nossa justificação; permite que a malícia nos não afete nem a perversão nos corrompa, para te servirmos sempre em verdade e santidade. Mediante Jesus Cristo, nosso Senhor. Amém."],
             "leituras": [
               {
                 "tipo": "Primeira",
