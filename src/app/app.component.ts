@@ -20,7 +20,6 @@ export class AppComponent {
   isDarkMode = false;
 
   constructor(private router: Router, private renderer: Renderer2){
-    console.log("varoaveos", environment.SUPABASE_KEY, environment.SUPABASE_URL)
   }
 
   mudouData() {
