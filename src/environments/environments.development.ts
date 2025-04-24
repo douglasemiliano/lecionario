@@ -1,4 +1,4 @@
 export const environment = {
-  SUPABASE_URL: 'https://xxxxx.supabase.co',
-  SUPABASE_KEY: 'sua-chave-publica'
+  SUPABASE_URL: '',
+  SUPABASE_KEY: ''
 };
