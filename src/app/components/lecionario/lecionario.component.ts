@@ -75,17 +75,21 @@ export class LecionarioComponent {
     }
     this.dataUnica = novaData; // atualiza o signal
 
-    this.lecionarioService.dataUnica.set(this.dataUnica); // atualiza o valor do signal no serviço
+    this.lecionarioService.dataUnica.set(this.dataUnica);
+    this.getConteudoLecionario();
+
     
   }
 
   onSelect(event:any){   
     this.dataUnica = event;
-    this.lecionarioService.getConteudoPorData(this.dataUnica);
+    this.lecionarioService.dataUnica.set(this.dataUnica);
+    this.getConteudoLecionario();
     this.isOpen = false;
   }
   
   formatarTexto(){
+
     
     let texto: string = `${this.negritoWhatsapp(this.conteudoLecionario?.tempo + " - Dia: " + this.dataUnica.toLocaleDateString())}
     \n${this.negritoWhatsapp(this.conteudoLecionario?.nome!)}
@@ -93,10 +97,11 @@ export class LecionarioComponent {
     \n${this.negritoWhatsapp(this.liturgiaDiariaTitulo)}
     \n${this.liturgiaDiaria.map((item, index) => `${index+1}. ${item}`).join("\n")}
     \n${this.negritoWhatsapp("Textos Bíblicos")}
-    \n${this.conteudoLecionario!.leituras.map((leitura: any) => `${leitura.tipo}: ${leitura.texto}`).join("\n")}
+    \n${this.conteudoLecionario!.leituras.map((leitura: any) => `${leitura.tipo}: ${leitura.texto}`).join("\n\n")}
     \n${this.negritoWhatsapp("Orações para o dia:")}
-    \n${this.conteudoLecionario!.oracoes.map((oracao: any) => `${oracao}`).join("\n")}
+    \n${this.conteudoLecionario!.oracoes.map((oracao: any, index: number, arr: any[]) => index < arr.length - 1 ? `${oracao}\n\nou` : oracao).join("\n\n")}
     `;
+    
 
     
     

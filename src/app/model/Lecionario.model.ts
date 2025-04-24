@@ -32,4 +32,15 @@ export class Texto {
     leituras: any[];
     tempo?: string;
   }
+
+  export interface LecionarioResponse {
+        id: string;
+        created_at: string;
+        dia: string;
+        leituras: string[];
+        nome: string;
+        oracoes: string[];
+        tempo: string;
+        ano_liturgico: string;
+  }
   
