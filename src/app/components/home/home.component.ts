@@ -11,6 +11,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatIconModule } from "@angular/material/icon";
 import { MatInputModule } from "@angular/material/input";
 import { Router } from "@angular/router";
+import { LecionarioService } from "../../services/lecionario.service";
 
 @Component({
   selector: 'app-home',
@@ -25,9 +26,15 @@ export class HomeComponent {
   title = 'lecionario';
   dataUnica: Date = new Date();
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private service: LecionarioService){}
 
   mudouData() {
+    console.log(this.dataUnica);
+    this.service.dataUnica.set(this.dataUnica);    
     this.router.navigateByUrl("/lecionario")
+  }
+
+  goToCadastro() {
+    this.router.navigateByUrl("/cadastro")
   }
 }

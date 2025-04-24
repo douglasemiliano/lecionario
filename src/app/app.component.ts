@@ -24,6 +24,10 @@ export class AppComponent {
     this.router.navigateByUrl("/lecionario")
   }
 
+  goToHome() {
+    this.router.navigateByUrl("/home")
+  }
+
   toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
 

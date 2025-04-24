@@ -1,13 +1,12 @@
-/* styles.scss */
 
-/* styles.scss */
+@use '@angular/material' as mat;
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-/* styles.scss */
 
 
 
 /* Tema Claro */
 body {
+
     background-color: #ffffff;
     color: #212529;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -34,13 +33,16 @@ body {
     }
 
     & .calendario {
-        background-color: #810081;
     }
 
     & .fab {
         background-color: #810081;
         color: white;
     }
+
+    @include mat.datepicker-overrides((
+        calendar-date-selected-state-background-color: purple,
+    ));
 
 }
 
@@ -79,9 +81,36 @@ body.dark-mode {
         background-color: #5f00c0;
         color: white;
     }
+
+    @include mat.datepicker-overrides((
+        calendar-date-selected-state-text-color: white,
+        calendar-date-selected-state-background-color: purple,
+        calendar-date-text-color: white,
+        calendar-header-text-color: white,
+        calendar-period-button-text-color: white,
+        calendar-body-label-text-color:white,
+        calendar-container-background-color: #31353a
+    ));
+
+
 }
 
 body.dark-mode .btn-toggle-theme {
     color: white;
     background-color: transparent;
 }
+
+.snackbar-success {
+    @include mat.snack-bar-overrides((
+        container-color: darkgreen ,
+        supporting-text-color: white,
+      ));
+  }
+  
+  .snackbar-error {
+
+    @include mat.snack-bar-overrides((
+        container-color: darkred ,
+        supporting-text-color: white,
+      ));
+  }

@@ -3,10 +3,11 @@
   "version": "1.0.4",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node -r dotenv/config mynode.js && ng serve",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "prebuild": "ts-node set-env.ts",
+    "build": "ng build --configuration=production"
   },
   "private": true,
   "dependencies": {
@@ -24,6 +25,7 @@
     "@popperjs/core": "^2.11.8",
     "@supabase/supabase-js": "^2.49.4",
     "bootstrap": "^5.3.5",
+    "dotenv": "^16.5.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
