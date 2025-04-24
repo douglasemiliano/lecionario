@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import { environment } from '../../environments/environments';
+import { AuthChangeEvent, createClient, Session, SupabaseClient } from '@supabase/supabase-js';
+import { environment } from '../../environments/environments.development';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +9,6 @@ export class SupabaseService {
   private supabase: SupabaseClient;
 
   constructor() {
-
-    console.log(environment.SUPABASE_KEY, environment.SUPABASE_KEY)
     this.supabase = createClient(
       environment.SUPABASE_URL,
       environment.SUPABASE_KEY,
@@ -62,9 +60,9 @@ export class SupabaseService {
     return this.supabase.auth.getSession();
   }
 
-  onAuthStateChange(callback: Function) {
+  onAuthChange(callback: (event: AuthChangeEvent, session: Session | null) => void) {
     this.supabase.auth.onAuthStateChange((_event, session) => {
-      callback(session);
+      callback(_event, session);
     });
   }
 

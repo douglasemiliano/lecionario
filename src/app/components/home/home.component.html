@@ -2,7 +2,7 @@
     Lecionário
   
     <div class="container mt-5">
-      <mat-form-field appearance="outline" class="mr-4" style="width: 100%; ">
+      <mat-form-field appearance="outline" class="mr-4" style="width: 80%; ">
         <mat-label>Data específica</mat-label>
         <input matInput [matDatepicker]="picker1" [(ngModel)]="dataUnica" (ngModelChange)="mudouData()">
         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -10,8 +10,7 @@
       </mat-form-field>
     </div>
 
-
-    <button mat-raised-button color="primary" (click)="goToCadastro()">Cadastro</button>
+    <!-- <button mat-raised-button color="primary" (click)="goToCadastro()">Cadastro</button> -->
   <!-- 
     <div class="container">
       <input type="date" class="form-control"  [(ngModel)]="dataUnica" (ngModelChange)="mudouData()" >
