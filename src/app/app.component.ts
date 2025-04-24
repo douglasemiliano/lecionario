@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { Router, RouterOutlet } from '@angular/router';
 import { NgbCalendar, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
+import { environment } from '../environments/environments.development';
 
 
 @Component({
@@ -18,7 +19,9 @@ export class AppComponent {
   dataUnica: Date = new Date();
   isDarkMode = false;
 
-  constructor(private router: Router, private renderer: Renderer2){}
+  constructor(private router: Router, private renderer: Renderer2){
+    console.log("varoaveos", environment.SUPABASE_KEY, environment.SUPABASE_URL)
+  }
 
   mudouData() {
     this.router.navigateByUrl("/lecionario")
