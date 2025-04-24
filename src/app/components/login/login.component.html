@@ -1,7 +1,7 @@
 <div class="login-container">
   <h2>Login</h2>
 
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="loginForm">
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Email</mat-label>
       <input matInput formControlName="email" type="email" required />
@@ -13,7 +13,7 @@
     </mat-form-field>
 
   </form>
-  <button mat-stroked-button color="primary" type="submit">
+  <button mat-stroked-button color="primary" (click)="onSubmit()" type="submit">
     Entrar
   </button>
 </div>
