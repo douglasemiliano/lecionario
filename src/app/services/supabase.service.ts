@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AuthChangeEvent, createClient, Session, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../environments/environments.development';
+import { LoadingService } from './loading.service'; // Importando seu serviço de loading
 
 @Injectable({
   providedIn: 'root'
@@ -8,39 +9,60 @@ import { environment } from '../../environments/environments.development';
 export class SupabaseService {
   private supabase: SupabaseClient;
 
-  constructor() {
+  constructor(private loadingService: LoadingService) {
     this.supabase = createClient(
       environment.SUPABASE_URL,
       environment.SUPABASE_KEY,
-      { auth: {
-        autoRefreshToken: true,
-        persistSession: true,
-        detectSessionInUrl: true,
-        storage: localStorage, // ou sessionStorage
-      },
-      global: {
-        // workaround opcional para problemas de lock
-        fetch: (...args) => fetch(...args),
-      },
-    });
+      {
+        auth: {
+          autoRefreshToken: true,
+          persistSession: true,
+          detectSessionInUrl: true,
+          storage: localStorage,
+        },
+        global: {
+          // Modificando o fetch global para interceptar as requisições
+          fetch: async (...args) => {
+            this.loadingService.show(); // Exibe o loading quando a requisição for feita
+
+            try {
+              const response = await fetch(...args); // Chama o fetch normalmente
+              return response;
+            } catch (error) {
+              console.error("Erro no fetch:", error);
+              throw error;
+            } finally {
+              this.loadingService.hide(); // Esconde o loading quando a requisição terminar
+            }
+          },
+        },
+      }
+    );
   }
 
   insertLectionary(entry: any) {
     return this.supabase.from('lecionario').insert([entry]);
   }
 
-  async getLectionary() {
-    return this.supabase.from('lecionario').select('*').eq("ano_liturgico", "C");
+  getLectionary() {
+    return this.supabase.from('lecionario').select('*').eq('ano_liturgico', 'C');
   }
 
-  getLecionarioPorAnoLiturgico(ano_liturgico: string){
-    return this.supabase.from('lecionario').select('*').eq("ano_liturgico", ano_liturgico).order('dia', { ascending: true });
+  getLecionarioPorAnoLiturgico(ano_liturgico: string) {
+    return this.supabase.from('lecionario').select('*').eq('ano_liturgico', ano_liturgico).order('dia', { ascending: true });
+  }
+
+  getLecionarioPorData(data: Date) {
+    let dataString = this.formatDate(data);
+    return this.supabase.from('lecionario').select('*').eq('dia', dataString);
+  }
+
+  private formatDate(date: Date): string {
+    return date.toISOString().split('T')[0]; // retorna yyyy-mm-dd
   }
 
   async getTodos() {
-    const { data: lecionario, error } = await this.supabase
-      .from('lecionario')
-      .select('*')
+    const { data: lecionario, error } = await this.supabase.from('lecionario').select('*');
     return { lecionario, error };
   }
 
@@ -75,7 +97,7 @@ export class SupabaseService {
       .from('lecionario')
       .update(entry)
       .eq('id', id);
-  }  
+  }
 
   deleteLectionary(id: string) {
     return this.supabase
@@ -83,6 +105,4 @@ export class SupabaseService {
       .delete()
       .eq('id', id);
   }
-  
-
 }

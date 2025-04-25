@@ -8,11 +8,12 @@ import { NgbCalendar, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/n
 import { environment } from '../environments/environments.development';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SupabaseService } from './services/supabase.service';
+import { LoadingComponent } from './components/shared/loading/loading.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterOutlet, MatCardModule, MatIconModule, NavbarComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterOutlet, MatCardModule, MatIconModule, NavbarComponent, LoadingComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

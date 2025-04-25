@@ -20,5 +20,8 @@
   </div>
   
 </div> -->
+<app-loading />
 <app-navbar *ngIf="isLoggedIn"></app-navbar>
-<router-outlet></router-outlet>
+<div class="container" [style]="{marginTop: isLoggedIn ? '5rem' : '0'}">
+  <router-outlet ></router-outlet>
+</div>

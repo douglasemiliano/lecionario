@@ -19,17 +19,14 @@ export class LecionarioService {
 
     let data: string | Date = date;
 
-    if(typeof date === 'object') {
-       data = this.formatDate(date);
+    if (typeof date === 'object') {
+      data = this.formatDate(date);
     }
-
 
     const ano = 'C'; // você pode tornar isso dinâmico se quiser
     const lecionario = LecionarioMock.find(l => l.ano === ano);
 
     const diaEncontrado = lecionario!.conteudo.find(item => item.dia === data);
-
-    console.log(diaEncontrado);
 
     return diaEncontrado!;
   }

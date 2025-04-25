@@ -8,5 +8,6 @@ import localePt from '@angular/common/locales/pt';
 
 registerLocaleData(localePt);
 
-bootstrapApplication(AppComponent, appConfig)
+bootstrapApplication(AppComponent, 
+  appConfig)
   .catch((err) => console.error(err));

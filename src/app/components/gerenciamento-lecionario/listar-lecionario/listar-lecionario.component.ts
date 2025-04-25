@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatPaginator, MatPaginatorModule, PageEvent} from '@angular/material/paginator';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
@@ -21,8 +21,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './listar-lecionario.component.scss'
 })
 export class ListarLecionarioComponent {
-  colunas: string[] = ['dia', 'nome', 'tempo', 'acoes'];
+  colunas: string[] = ['dia', 'nome', 'acoes'];
   dataSourceLecionario: MatTableDataSource<LecionarioResponse>;
+  pageSize = 10;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -76,6 +77,10 @@ export class ListarLecionarioComponent {
 
       this.recuperarLecionario();
     }
+  }
+
+  handlePageEvent(e: PageEvent) {  
+    this.pageSize = e.pageSize;
   }
   
   

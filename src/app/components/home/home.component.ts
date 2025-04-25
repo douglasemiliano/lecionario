@@ -29,12 +29,16 @@ export class HomeComponent {
   constructor(private router: Router, private service: LecionarioService){}
 
   mudouData() {
-    console.log(this.dataUnica);
     this.service.dataUnica.set(this.dataUnica);    
     this.router.navigateByUrl("/lecionario")
   }
 
   goToCadastro() {
     this.router.navigateByUrl("/cadastro")
+  }
+
+  goToLecionario() {
+    this.service.dataUnica.set(this.dataUnica);    
+    this.router.navigateByUrl("/lecionario")  
   }
 }

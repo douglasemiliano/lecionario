@@ -12,6 +12,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatRippleModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { SupabaseService } from '../../services/supabase.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-lecionario',
@@ -24,19 +26,12 @@ export class LecionarioComponent {
   private lecionarioService: LecionarioService = inject(LecionarioService)
 
   dataUnica: Date = this.lecionarioService.dataUnica();
-  dataInicio: Date | null = null;
-  dataFim: Date | null = null;
+  
   conteudoLecionario: Conteudo | null = null;
 
   isOpen = false;
 
-  isDragging = false;
-
-  dataSelecionada: any = ""
-
-  lecionarioCompleto: Lecionario[] = LecionarioMock;
-
-    descricaoLecionario: string = "Esta ferramenta é organizada para nos conduzir a uma vida de disciplina espiritual e desfrutar do livre acesso proporcionado pela obra de Cristo. Não se trata apenas de interpretar textos, mas de aprender a ouvir Deus falar diretamente com você através da oração e leitura bíblica."
+  descricaoLecionario: string = "Esta ferramenta é organizada para nos conduzir a uma vida de disciplina espiritual e desfrutar do livre acesso proporcionado pela obra de Cristo. Não se trata apenas de interpretar textos, mas de aprender a ouvir Deus falar diretamente com você através da oração e leitura bíblica."
   liturgiaDiariaTitulo: string = "Liturgia Diária"
   
   liturgiaDiaria: string[] = ["Inicie com uma oração, pedindo ao Senhor que fale através de Sua Palavra e prepare seu coração para desfrutar de Sua presença.",
@@ -45,20 +40,20 @@ export class LecionarioComponent {
     "Conclua com a oração diária, utilizando-a como guia para refletir sobre o que buscar nesse momento."
   ] 
 
-  constructor(){}
+  constructor(private supabaseService: SupabaseService, private http: HttpClient){}
 
   ngOnInit(){
     this.getConteudoLecionario();
   }
-  
-  getConteudoLecionario(){
-    this.conteudoLecionario = this.lecionarioService.getConteudoPorData(this.lecionarioService.dataUnica())!
-  }
 
-  mudouData() {
-    this.lecionarioService.getConteudoPorData(this.dataUnica);
-    console.log(this.dataUnica.setDate(this.dataUnica.getDate() + 1));
-    
+  getConteudoLecionario(){
+    this.supabaseService.getLecionarioPorData(this.lecionarioService.dataUnica()).then((response) => {
+      if(response.error){
+        alert("Erro ao buscar o lecionário: " + response.error.message);    
+        return;
+      }
+      this.conteudoLecionario = response.data![0]
+    })
   }
 
    primeiraLetraMaiuscula(nome: string) {
@@ -78,7 +73,6 @@ export class LecionarioComponent {
     this.lecionarioService.dataUnica.set(this.dataUnica);
     this.getConteudoLecionario();
 
-    
   }
 
   onSelect(event:any){   
@@ -89,8 +83,6 @@ export class LecionarioComponent {
   }
   
   formatarTexto(){
-
-    
     let texto: string = `${this.negritoWhatsapp(this.conteudoLecionario?.tempo + " - Dia: " + this.dataUnica.toLocaleDateString())}
     \n${this.negritoWhatsapp(this.conteudoLecionario?.nome!)}
     \n${this.descricaoLecionario}
@@ -101,9 +93,6 @@ export class LecionarioComponent {
     \n${this.negritoWhatsapp("Orações para o dia:")}
     \n${this.conteudoLecionario!.oracoes.map((oracao: any, index: number, arr: any[]) => index < arr.length - 1 ? `${oracao}\n\nou` : oracao).join("\n\n")}
     `;
-    
-
-    
     
     navigator.clipboard.writeText(texto).then(() => {
       alert('Lecionário copiado para a área de transferência!');
