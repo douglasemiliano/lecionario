@@ -34,7 +34,7 @@ export class SupabaseService {
   }
 
   getLecionarioPorAnoLiturgico(ano_liturgico: string){
-    return this.supabase.from('lecionario').select('*').eq("ano_liturgico", ano_liturgico);
+    return this.supabase.from('lecionario').select('*').eq("ano_liturgico", ano_liturgico).order('dia', { ascending: true });
   }
 
   async getTodos() {
@@ -68,6 +68,20 @@ export class SupabaseService {
 
   getUser() {
     return this.supabase.auth.getUser().then(({ data }) => data.user);
+  }
+
+  updateLectionary(id: number, entry: any) {
+    return this.supabase
+      .from('lecionario')
+      .update(entry)
+      .eq('id', id);
+  }  
+
+  deleteLectionary(id: string) {
+    return this.supabase
+      .from('lecionario')
+      .delete()
+      .eq('id', id);
   }
   
 

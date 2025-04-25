@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 import { LecionarioComponent } from './components/lecionario/lecionario.component';
 import { HomeComponent } from './components/home/home.component';
-import { CadastroLecionarioComponent } from './components/cadastro-lecionario/cadastro-lecionario.component';
+import { CadastroLecionarioComponent } from './components/gerenciamento-lecionario/cadastro-lecionario/cadastro-lecionario.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthGuard } from './guards/auth.guard';
-import { ListarLecionarioComponent } from './components/listar-lecionario/listar-lecionario.component';
+import { ListarLecionarioComponent } from './components/gerenciamento-lecionario/listar-lecionario/listar-lecionario.component';
 
 export const routes: Routes = [
     { path: 'home', component: HomeComponent, data: { animation: 'home' } },

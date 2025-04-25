@@ -1,5 +1,6 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { LecionarioMock } from '../mocks/lecionario.mock';
+import { Lecionario } from '../model/Lecionario.model';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +8,11 @@ import { LecionarioMock } from '../mocks/lecionario.mock';
 export class LecionarioService {
 
   public dataUnica: WritableSignal<Date> = signal<Date>(new Date());
+  public lecionarioSelecionado: WritableSignal<Lecionario> = signal<any>(null);
+
+  setLecionarioSelecionado(lecionario: Lecionario | null) {
+    this.lecionarioSelecionado.set(lecionario!);
+  }
 
   getConteudoPorData(date: Date) {
     if (!this.dataUnica) return;
