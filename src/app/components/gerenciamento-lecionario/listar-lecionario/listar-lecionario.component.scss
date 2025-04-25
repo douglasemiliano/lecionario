@@ -12,6 +12,10 @@
     background-color: var(--primary-color);
     color: var(--white-color);
   }
+
+  .fab {
+   display: none;;
+  }
   
   /* Estilos para telas pequenas (mobile) */
   @media (max-width: 767px) {
@@ -26,6 +30,7 @@
   
     /* Exibir o FAB em telas pequenas */
     .fab {
+        display: block;
         position: fixed;
         bottom: 3rem;  /* Distância do fundo da tela */
         right: 1rem;   /* Distância da lateral direita da tela */
