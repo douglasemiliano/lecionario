@@ -53,12 +53,12 @@ export class SupabaseService {
   }
 
   getLecionarioPorData(data: Date) {
-    let dataString = this.formatDate(data);
+    let dataString = this.formatDate(data);    
     return this.supabase.from('lecionario').select('*').eq('dia', dataString);
   }
 
   private formatDate(date: Date): string {
-    return date.toISOString().split('T')[0]; // retorna yyyy-mm-dd
+    return date.toLocaleDateString("pt-BR").split('/').reverse().join('-');
   }
 
   async getTodos() {

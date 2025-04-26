@@ -89,7 +89,7 @@ export class LecionarioComponent {
     \n${this.negritoWhatsapp(this.liturgiaDiariaTitulo)}
     \n${this.liturgiaDiaria.map((item, index) => `${index+1}. ${item}`).join("\n")}
     \n${this.negritoWhatsapp("Textos Bíblicos")}
-    \n${this.conteudoLecionario!.leituras.map((leitura: any) => `${leitura.tipo}: ${leitura.texto}`).join("\n\n")}
+    \n${this.conteudoLecionario!.leituras.map((leitura: any) => `${this.primeiraLetraMaiuscula(leitura.tipo)}: ${leitura.texto}`).join("\n\n")}
     \n${this.negritoWhatsapp("Orações para o dia:")}
     \n${this.conteudoLecionario!.oracoes.map((oracao: any, index: number, arr: any[]) => index < arr.length - 1 ? `${oracao}\n\nou` : oracao).join("\n\n")}
     `;

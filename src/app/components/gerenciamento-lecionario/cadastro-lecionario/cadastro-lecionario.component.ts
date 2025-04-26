@@ -45,7 +45,7 @@ export class CadastroLecionarioComponent implements OnInit {
     this.form = this.fb.group({
       ano_liturgico: ['C', Validators.required],
       tempo: ['', Validators.required],
-      dia: [new Date(), Validators.required],
+      dia: ['', Validators.required],
       nome: ['', Validators.required],
       oracoes: this.fb.array([this.fb.control('', Validators.required)]),
       leituras: this.fb.array([this.createLeituraFormGroup()])
