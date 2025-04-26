@@ -71,7 +71,7 @@ export class CadastroLecionarioComponent implements OnInit {
       id: data.id,
       ano_liturgico: data.ano_liturgico,
       tempo: data.tempo,
-      dia: new Date(data.dia),
+      dia: new Date(data.dia+ 'T00:00:00'),
       nome: data.nome
     });
 
