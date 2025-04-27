@@ -24,10 +24,10 @@
         <td mat-cell *matCellDef="let row"> {{row.nome}} </td>
       </ng-container>
 
-      <!-- <ng-container matColumnDef="tempo">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Tempo Litúrgico </th>
-        <td mat-cell *matCellDef="let row"> {{row.tempo}} </td>
-      </ng-container> -->
+      <ng-container matColumnDef="ano_liturgico">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ano Litúrgico </th>
+        <td mat-cell *matCellDef="let row"> {{row.ano_liturgico}} </td>
+      </ng-container>
 
       <ng-container matColumnDef="acoes">
         <th mat-header-cell *matHeaderCellDef> Ações </th>

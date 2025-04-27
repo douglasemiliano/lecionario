@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LecionarioService } from '../../../services/lecionario.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ModalConfirmacaoService } from '../../shared/modal-confirmacao/modal-confirmacao.service';
 
 
 @Component({
@@ -21,7 +22,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrl: './listar-lecionario.component.scss'
 })
 export class ListarLecionarioComponent {
-  colunas: string[] = ['dia', 'nome', 'acoes'];
+  colunas: string[] = ['dia', 'nome', 'ano_liturgico', 'acoes'];
   dataSourceLecionario: MatTableDataSource<LecionarioResponse>;
   pageSize = 10;
 
@@ -30,7 +31,8 @@ export class ListarLecionarioComponent {
 
   constructor(private supabaseService: SupabaseService, 
     private snackbar: MatSnackBar,
-    private lecionarioService: LecionarioService, private router: Router) { 
+    private lecionarioService: LecionarioService, private router: Router,
+    private modalService: ModalConfirmacaoService) { 
     this.recuperarLecionario();
   }
 
@@ -61,22 +63,30 @@ export class ListarLecionarioComponent {
   }
 
   async delete(id: string) {
-  
-    const { error } = await this.supabaseService.deleteLectionary(id);
-  
-    if (error) {
-      this.snackbar.open('Erro ao excluir o registro.', 'Fechar', {
-        duration: 3000,
-        panelClass: ['snackbar-error']
-      });
-    } else {
-      this.snackbar.open('Registro excluído com sucesso!', 'Fechar', {
-        duration: 3000,
-        panelClass: ['snackbar-success']
-      });
 
-      this.recuperarLecionario();
-    }
+    this.modalService.confirmar('Deseja realmente excluir este registro?').then(async (confirmado) => {
+      if (confirmado) {
+        // Usuário clicou em "Sim"
+        const { error } = await this.supabaseService.deleteLectionary(id);
+          if (error) {
+            this.snackbar.open('Erro ao excluir o registro.', 'Fechar', {
+              duration: 3000,
+              panelClass: ['snackbar-error']
+            });
+          } else {
+            this.snackbar.open('Registro excluído com sucesso!', 'Fechar', {
+              duration: 3000,
+              panelClass: ['snackbar-success']
+            });
+      
+            this.recuperarLecionario();
+          }
+        
+      } else {
+        // Usuário clicou em "Não"
+        console.log('Exclusão cancelada.');
+      }
+    });
   }
 
   handlePageEvent(e: PageEvent) {  
